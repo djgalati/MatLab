@@ -1,0 +1,25 @@
+pic=zeros(30,60);%this creates the base for the matrix art picture
+for(i=1:3:30)%lines 2-7 create the internal pattern inside the picture created
+    for(j=1:4:60)
+        pic(i,j)=1;
+        
+    end
+end
+
+pic(2,:)=0;%lines 9-16 put 1 border around the picture with 1's on the outside and 0's on the inside
+pic(:,2)=0;
+pic(29,:)=0;
+pic(:,59)=0;
+pic(1,:)=1;
+pic(:,1)=1;
+pic(30,:)=1;
+pic(:,60)=1;
+
+fid=fopen('lab8-data.txt','wt');%this line creates the txt file and makes it writeable
+for(i=1:30)%lines 19-24 write the matrix art created to the text file so it appears as a matrix
+    for(j=1:60)
+        fprintf(fid, '%d', pic(i,j));
+    end
+    fprintf(fid,'\n');
+end
+fclose(fid);%this closes the txt editor and saves the file
